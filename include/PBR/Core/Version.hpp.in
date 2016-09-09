@@ -1,0 +1,25 @@
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; If not, see <http://www.gnu.org/licenses/>.
+//
+// Copyright (C) 2016 PBR-Softwares (contact@pbr-softwares.com)
+//
+
+#pragma once
+
+#define PROJECT_VERSION_MAJOR   @PROJECT_VERSION_MAJOR@
+#define PROJECT_VERSION_MINOR   @PROJECT_VERSION_MINOR@
+#define PROJECT_VERSION_PATCH   @PROJECT_VERSION_PATCH@
+#define PROJECT_VERSION_EXTRA   @PROJECT_VERSION_EXTRA@
+#define PROJECT_VERSION         "@PROJECT_VERSION@"
+#define PROJECT_VERSION_FULL    "@PROJECT_VERSION_FULL@"

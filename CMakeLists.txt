@@ -1,0 +1,177 @@
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License along
+## with this program; If not, see <http://www.gnu.org/licenses/>.
+##
+## Copyright (C) 2016 PBR-Softwares (contact@pbr-softwares.com)
+##
+
+
+
+## CMAKE INITIALISATION
+
+PROJECT(PBRCore)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.11)
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
+
+## END CMAKE INITIALISATION
+
+
+
+## PROJECT VERSION
+
+SET(PROJECT_VERSION_MAJOR 1)
+SET(PROJECT_VERSION_MINOR 0)
+SET(PROJECT_VERSION_PATCH 0)
+SET(PROJECT_VERSION_EXTRA 0)
+
+SET(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+SET(PROJECT_VERSION_FULL ${PROJECT_VERSION}.${PROJECT_VERSION_EXTRA})
+
+## END PROJECT VERSION
+
+
+
+## PROJECT CONFIGURATION
+
+SET(PROJECT_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include/)
+SET(PROJECT_SOURCE_DIR ${CMAKE_SOURCE_DIR}/source/)
+
+CONFIGURE_FILE(
+    ${PROJECT_INCLUDE_DIR}/PBR/Core/Version.hpp.in
+    ${PROJECT_INCLUDE_DIR}/PBR/Core/Version.hpp
+    )
+
+CONFIGURE_FILE(
+    ${PROJECT_INCLUDE_DIR}/PBR/Core/Configuration.hpp.in
+    ${PROJECT_INCLUDE_DIR}/PBR/Core/Configuration.hpp
+    )
+
+## END PROJECT CONFIGURATION
+
+
+
+## PROJECT LANGUAGE
+
+ENABLE_LANGUAGE(CXX)
+
+## END PROJECT LANGUAGE
+
+
+
+## FIND LIBRARY DEPENDENCY
+
+FIND_PACKAGE(glm REQUIRED)
+
+##
+
+
+
+## PROJECT SOURCES FILES
+
+FILE(GLOB_RECURSE PROJECT_SOURCE_FILES
+    ${PROJECT_SOURCE_DIR}/*.cpp
+    )
+
+## END PROJECT SOURCES FILES
+
+
+
+## PROJECT INCLUDES FILES
+
+FILE(GLOB_RECURSE PROJECT_INCLUDE_FILES
+    ${PROJECT_INCLUDE_DIR}/*.hpp
+    )
+
+## END PROJECT INCLUDES FILES
+
+
+
+## PROJECT INCUDES DIRECTORIES
+
+INCLUDE_DIRECTORIES(${PROJECT_INCLUDE_DIR})
+
+## END PROJECT INCLUDES DIRECTORIES
+
+
+
+## PROJECT SETTINGS
+
+## END PROJECT SETTINGS
+
+
+
+## BINARY SETTINGS
+
+ADD_LIBRARY(${CMAKE_PROJECT_NAME} SHARED ${PROJECT_SOURCE_FILES} ${PROJECT_INCLUDE_FILES})
+
+## END BINARY SETTINGS
+
+
+
+## COMPILATION SETTINGS
+
+INCLUDE(cmake/compilation_settings.cmake)
+CONFIGURE_COMPILATION()
+
+## END COMPILATION SETTINGS
+
+
+
+## LIBRARY SETTINGS
+
+## END LIBRARY SETTINGS
+
+
+
+## INSTALLATION SETTINGS
+
+INSTALL(TARGETS ${CMAKE_PROJECT_NAME}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib)
+
+INSTALL(DIRECTORY ${PROJECT_INCLUDE_DIR}
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.hpp"
+    )
+
+## END INSTALLATION SETTINGS
+
+
+
+## TEST CONFIGURATION
+
+INCLUDE(cmake/testing_settings.cmake)
+CONFIGURE_TESTING()
+
+## END TEST CONFIGURATION
+
+
+
+## TEST
+
+ENABLE_TESTING()
+CXX_TEST(test1 test/test1.cpp)
+CXX_TEST(test_engine test/test_engine.cpp)
+
+## END TESTS
+
+
+
+## DOXYGEN CONFIGURATION
+
+INCLUDE(cmake/doxygen_settings.cmake)
+CONFIGURE_DOXYGEN()
+
+## END DOXYGEN CONFIGURATION
+
